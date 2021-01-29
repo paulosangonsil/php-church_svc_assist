@@ -166,44 +166,6 @@ if ( ( ! empty($fldSurname) && ( ! is_numeric($fldSurname) ) ) &&
             <h2>Bienvenido a la p&aacute;gina de registro para participaci&oacute;n en los cultos de nuestra amada <b>Iglesia Latina Pr&iacute;ncipe de Paz</b></h2>
             As&iacute; que una persona validar sus informaciones, ser&aacute; enviado al correo informado, una contrase&ntilde;a para su inscripci&oacute;n en los cultos
         </div>
-      <form name="mainForm" action="<?php echo basename($_SERVER["SCRIPT_FILENAME"]); ?>" method="post">
-        <div class="w3-container">
-          <p><select class="w3-select" id="<?php echo FLD_CHURCH; ?>" name="<?php echo FLD_CHURCH; ?>">
-<?php
-$churchs = Church::listAll();
-
-if ($selChurch == UNDEFINED) {
-    $selChurch = $churchs[0];
-}
-
-foreach ($churchs as $church) {
-?>
-              <option value="<?php echo $church->get_id() ?>"><?php echo $church->get_name() ?></option>
-<?php
-}
-?>
-          </select></p>
-        </div>
-        <div class="w3-container">
-          <input class="w3-input w3-border" type="text" id="<?php echo FLD_NAME; ?>" name="<?php echo FLD_NAME; ?>" placeholder="Informe su(s) nombre(s)"><br>
-        </div>
-        <div class="w3-container">
-          <input class="w3-input w3-border" type="text" id="<?php echo FLD_SURNAME; ?>" name="<?php echo FLD_SURNAME; ?>" placeholder="Informe su apellido"><br>
-        </div>
-        <div class="w3-container">
-          <input class="w3-input w3-border" type="email" id="<?php echo FLD_EMAIL; ?>" name="<?php echo FLD_EMAIL; ?>" placeholder="Informe su correo electr&oacute;nico"><br>
-        </div>
-        <div class="w3-container">
-          <input class="w3-input w3-border" type="text" id="<?php echo FLD_TEL; ?>" name="<?php echo FLD_TEL; ?>" placeholder="Informe su tel&eacute;fono"><br>
-        </div>
-        <div class="w3-container">
-          <input class="w3-input w3-border" type="text" id="<?php echo FLD_SOC_SEC; ?>" name="<?php echo FLD_SOC_SEC; ?>" placeholder="Informe su RUT con el gui&oacute;n: ejemplo 23654987-8">
-        </div>
-        <div class="w3-container w3-center">
-          <p><input class="w3-button w3-blue" type="button" onclick="validateForm()" value="Solicitar registro"> |
-                <a href="<?php echo PAG_NEW_PROP ?>">Volver al inicio</a></p>
-        </div>
-      </form>
 <?php
 $strCSSClass = "w3-pale-red";
 
@@ -215,9 +177,49 @@ if ($warnMsg != NULL) {
         $strCSSClass = "w3-green";
     }
 ?>
-      <div class="w3-panel <?php echo $strCSSClass ?> w3-border">
-        <p><?php echo $warnMsg ?></p>
-      </div>
+        <div class="w3-panel <?php echo $strCSSClass ?> w3-border">
+            <p><?php echo $warnMsg ?></p>
+        </div>
 <?php } ?>
+        <form name="mainForm" action="<?php echo basename($_SERVER["SCRIPT_FILENAME"]); ?>" method="post">
+            <div class="w3-container">
+                <p>
+                    <select class="w3-select" id="<?php echo FLD_CHURCH; ?>" name="<?php echo FLD_CHURCH; ?>">
+<?php
+$churchs = Church::listAll();
+
+if ($selChurch == UNDEFINED) {
+    $selChurch = $churchs[0];
+}
+
+foreach ($churchs as $church) {
+?>
+                        <option value="<?php echo $church->get_id() ?>"><?php echo $church->get_name() ?></option>
+<?php
+}
+?>
+                    </select>
+                </p>
+            </div>
+            <div class="w3-container">
+                <input class="w3-input w3-border" type="text" id="<?php echo FLD_NAME; ?>" name="<?php echo FLD_NAME; ?>" placeholder="Informe su(s) nombre(s)"><br>
+            </div>
+            <div class="w3-container">
+                <input class="w3-input w3-border" type="text" id="<?php echo FLD_SURNAME; ?>" name="<?php echo FLD_SURNAME; ?>" placeholder="Informe su apellido"><br>
+            </div>
+            <div class="w3-container">
+                <input class="w3-input w3-border" type="email" id="<?php echo FLD_EMAIL; ?>" name="<?php echo FLD_EMAIL; ?>" placeholder="Informe su correo electr&oacute;nico"><br>
+            </div>
+            <div class="w3-container">
+                <input class="w3-input w3-border" type="text" id="<?php echo FLD_TEL; ?>" name="<?php echo FLD_TEL; ?>" placeholder="Informe su tel&eacute;fono"><br>
+            </div>
+            <div class="w3-container">
+                <input class="w3-input w3-border" type="text" id="<?php echo FLD_SOC_SEC; ?>" name="<?php echo FLD_SOC_SEC; ?>" placeholder="Informe su RUT con el gui&oacute;n: ejemplo 23654987-8">
+            </div>
+            <div class="w3-container w3-center">
+                <p><input class="w3-button w3-blue" type="button" onclick="validateForm()" value="Solicitar registro"> |
+                    <a href="<?php echo PAG_NEW_PROP ?>">Volver al inicio</a></p>
+            </div>
+        </form>
     </body>
 </html>

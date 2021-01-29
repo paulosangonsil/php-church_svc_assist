@@ -123,7 +123,7 @@ foreach ($listProp as $proposal) {
                 </p>
             </div>
             <div class="w3-container w3-center">
-                <input class="w3-button w3-blue" type="button" onclick="validateForm()" value="Aplicar aciones">
+                <input class="w3-button w3-blue" type="button" onclick="validateForm()" value="Aplicar acciones">
             </div>
         </form>
 <?php

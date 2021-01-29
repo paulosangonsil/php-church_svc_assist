@@ -230,6 +230,21 @@ else  {
           <?php echo $msgSeatCount; ?> cupo(s) para el culto del d&iacute;a <?php echo $weekDay; ?>.
           <?php /*if ($availSeats == 0) { echo "Pero p&oacute;ngase en la fila - tal vez haya desistencia y le avisar&eacute; en este caso"; }*/ ?>
         </div>
+<?php
+$strCSSClass = "w3-pale-red";
+
+if ($warnMsg != NULL) {
+    if ($msgType == MSG_TYPE_WARN) {
+        $strCSSClass = "w3-orange";
+    }
+    else if ($msgType == MSG_TYPE_SUCCESS) {
+        $strCSSClass = "w3-green";
+    }
+?>
+        <div class="w3-panel <?php echo $strCSSClass ?> w3-border">
+            <p><?php echo $warnMsg ?></p>
+        </div>
+<?php } ?>
         <div class="w3-container">
           <input type="hidden" id="<?php echo FLD_ACTION; ?>" name="<?php echo FLD_ACTION; ?>" value="<?php echo ACTION_SUBSCRIBE; ?>">
           <p><select class="w3-select" id="<?php echo FLD_CHURCH; ?>" name="<?php echo FLD_CHURCH; ?>">
@@ -248,11 +263,11 @@ else  {
               </select>
             </div>
             <div class="w3-half">
-                <input class="w3-input w3-border" type="text" id=<?php echo FLD_KEY_VALUE; ?> name=<?php echo FLD_KEY_VALUE; ?> placeholder="Elija la manera de identificaci&oacute;n y digite aqu&iacute; de acuerdo con lo seleccionado (e-mail o rut o telefono)"><br>
+                <input class="w3-input w3-border" type="text" id="<?php echo FLD_KEY_VALUE; ?>" name="<?php echo FLD_KEY_VALUE; ?>" placeholder="Elija la manera de identificaci&oacute;n y digite aqu&iacute; de acuerdo con lo seleccionado (e-mail o rut o telefono)"><br>
             </div>
         </div>
         <div class="w3-container">
-            <input class="w3-input w3-border" type="password" id=<?php echo FLD_PASSWD; ?> name=<?php echo FLD_PASSWD; ?> placeholder="Informe su contrase&ntilde;a"><br>
+            <input class="w3-input w3-border" type="password" id="<?php echo FLD_PASSWD; ?>" name="<?php echo FLD_PASSWD; ?>" placeholder="Informe su contrase&ntilde;a"><br>
             <!-- <a href="<?php echo PAG_RECOVER_PASSWD; ?>">(&iexcl;Me olvid&eacute; la contrase&ntilde;a!)</a><br> -->
             <a href="<?php echo PAG_NEW_MEMBER; ?>">(&iexcl;No tengo registro en el sistema!)</a>
         </div>
@@ -261,21 +276,6 @@ else  {
                 <input class="w3-button w3-red" type="button" onclick="validateForm(<?php echo ACTION_UNSUBSCRIBE; ?>);" value="Borrar inscripci&oacute;n"></p>
         </div>
       </form>
-<?php
-$strCSSClass = "w3-pale-red";
-
-if ($warnMsg != NULL) {
-    if ($msgType == MSG_TYPE_WARN) {
-        $strCSSClass = "w3-orange";
-    }
-    else if ($msgType == MSG_TYPE_SUCCESS) {
-        $strCSSClass = "w3-green";
-    }
-?>
-      <div class="w3-panel <?php echo $strCSSClass ?> w3-border">
-        <p><?php echo $warnMsg ?></p>
-      </div>
-<?php } ?>
     </body>
 <?php
 if (Utils\General::getHTTPVar(FLD_USRDATEZN) == NULL) {
